@@ -6,7 +6,7 @@ Coordinates git parsing, static analysis, ML prediction, and report generation.
 
 import time
 from pathlib import Path
-from typing import Optional
+from typing import Optional, List, Any
 
 from rich.console import Console
 
@@ -190,9 +190,9 @@ class RepositoryAnalyzer:
             sustainability=sustainability
         )
     
-    def _generate_recommendations(self, metrics: OverallMetrics) -> List:
+    def _generate_recommendations(self, metrics: OverallMetrics) -> List[Any]:
         """Generate actionable recommendations based on analysis results."""
-        from ..models.report import Recommendation
+        from ..models.report import Recommendation, Priority
         
         recommendations = []
         

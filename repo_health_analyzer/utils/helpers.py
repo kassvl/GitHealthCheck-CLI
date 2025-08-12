@@ -245,12 +245,13 @@ def find_files_by_pattern(directory: Path, patterns: List[str]) -> List[Path]:
         List[Path]: Matching file paths
     """
     import fnmatch
+    import os
     
     matching_files = []
     
-    for root, _, files in directory.walk():
+    for root, _, files in os.walk(directory):
         for file in files:
-            file_path = root / file
+            file_path = Path(root) / file
             
             for pattern in patterns:
                 if fnmatch.fnmatch(file, pattern) or fnmatch.fnmatch(str(file_path), pattern):

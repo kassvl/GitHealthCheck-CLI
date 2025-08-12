@@ -1,0 +1,1500 @@
+{
+  "title": "Code Smell Heatmap",
+  "description": "Visualization of code smells across repository files",
+  "data": [
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/tests/test_integration.py",
+      "smell_count": 49,
+      "total_severity": 164.9,
+      "avg_severity": 3.4,
+      "smells": [
+        {
+          "type": "long_function",
+          "line": 45,
+          "severity": 10.0,
+          "description": "Function 'test_sample_python_project' is 129 lines long"
+        },
+        {
+          "type": "long_function",
+          "line": 179,
+          "severity": 8.1,
+          "description": "Function 'test_report_json_serialization' is 81 lines long"
+        },
+        {
+          "type": "long_function",
+          "line": 261,
+          "severity": 8.8,
+          "description": "Function 'test_report_file_operations' is 88 lines long"
+        },
+        {
+          "type": "magic_number",
+          "line": 79,
+          "severity": 3.0,
+          "description": "Magic number '500' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 114,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 114,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 122,
+          "severity": 3.0,
+          "description": "Magic number '42' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 123,
+          "severity": 3.0,
+          "description": "Magic number '42' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 163,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 197,
+          "severity": 3.0,
+          "description": "Magic number '30' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 201,
+          "severity": 3.0,
+          "description": "Magic number '7.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 203,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 204,
+          "severity": 3.0,
+          "description": "Magic number '20.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 210,
+          "severity": 3.0,
+          "description": "Magic number '7.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 211,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 213,
+          "severity": 3.0,
+          "description": "Magic number '4.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 214,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 216,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 220,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 221,
+          "severity": 3.0,
+          "description": "Magic number '2.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 224,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 225,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 231,
+          "severity": 3.0,
+          "description": "Magic number '6.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 232,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 240,
+          "severity": 3.0,
+          "description": "Magic number '7.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 244,
+          "severity": 3.0,
+          "description": "Magic number '7.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 246,
+          "severity": 3.0,
+          "description": "Magic number '6.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 253,
+          "severity": 3.0,
+          "description": "Magic number '30.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 259,
+          "severity": 3.0,
+          "description": "Magic number '7.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 279,
+          "severity": 3.0,
+          "description": "Magic number '30' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 283,
+          "severity": 3.0,
+          "description": "Magic number '7.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 285,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 286,
+          "severity": 3.0,
+          "description": "Magic number '20.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 292,
+          "severity": 3.0,
+          "description": "Magic number '7.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 293,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 295,
+          "severity": 3.0,
+          "description": "Magic number '4.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 296,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 298,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 302,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 303,
+          "severity": 3.0,
+          "description": "Magic number '2.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 306,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 307,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 313,
+          "severity": 3.0,
+          "description": "Magic number '6.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 314,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 322,
+          "severity": 3.0,
+          "description": "Magic number '7.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 326,
+          "severity": 3.0,
+          "description": "Magic number '7.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 328,
+          "severity": 3.0,
+          "description": "Magic number '6.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 335,
+          "severity": 3.0,
+          "description": "Magic number '30.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 348,
+          "severity": 3.0,
+          "description": "Magic number '7.5' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/tests/test_analyzer.py",
+      "smell_count": 26,
+      "total_severity": 83.5,
+      "avg_severity": 3.2,
+      "smells": [
+        {
+          "type": "long_function",
+          "line": 100,
+          "severity": 8.5,
+          "description": "Function 'test_health_report_serialization' is 85 lines long"
+        },
+        {
+          "type": "magic_number",
+          "line": 62,
+          "severity": 3.0,
+          "description": "Magic number '800' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 62,
+          "severity": 3.0,
+          "description": "Magic number '200' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 63,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 64,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 116,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 117,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 122,
+          "severity": 3.0,
+          "description": "Magic number '7.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 124,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 125,
+          "severity": 3.0,
+          "description": "Magic number '25.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 131,
+          "severity": 3.0,
+          "description": "Magic number '7.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 134,
+          "severity": 3.0,
+          "description": "Magic number '5.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 135,
+          "severity": 3.0,
+          "description": "Magic number '7.2' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 137,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 142,
+          "severity": 3.0,
+          "description": "Magic number '3.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 145,
+          "severity": 3.0,
+          "description": "Magic number '8.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 146,
+          "severity": 3.0,
+          "description": "Magic number '25' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 152,
+          "severity": 3.0,
+          "description": "Magic number '6.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 153,
+          "severity": 3.0,
+          "description": "Magic number '8.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 158,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 161,
+          "severity": 3.0,
+          "description": "Magic number '7.8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 164,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 165,
+          "severity": 3.0,
+          "description": "Magic number '7.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 167,
+          "severity": 3.0,
+          "description": "Magic number '6.8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 174,
+          "severity": 3.0,
+          "description": "Magic number '45.2' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 180,
+          "severity": 3.0,
+          "description": "Magic number '7.5' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/core/ml/sustainability.py",
+      "smell_count": 24,
+      "total_severity": 75.3,
+      "avg_severity": 3.1,
+      "smells": [
+        {
+          "type": "long_function",
+          "line": 83,
+          "severity": 5.8,
+          "description": "Function '_extract_features' is 58 lines long"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 142,
+          "severity": 3.5,
+          "description": "Function '_predict_maintenance_probability' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 75,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 79,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 97,
+          "severity": 3.0,
+          "description": "Magic number '30' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 108,
+          "severity": 3.0,
+          "description": "Magic number '90' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 138,
+          "severity": 3.0,
+          "description": "Magic number '30' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 152,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 160,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 170,
+          "severity": 3.0,
+          "description": "Magic number '365' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 187,
+          "severity": 3.0,
+          "description": "Magic number '90' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 188,
+          "severity": 3.0,
+          "description": "Magic number '90' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 193,
+          "severity": 3.0,
+          "description": "Magic number '90' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 194,
+          "severity": 3.0,
+          "description": "Magic number '90' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 239,
+          "severity": 3.0,
+          "description": "Magic number '7' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 240,
+          "severity": 3.0,
+          "description": "Magic number '30' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 241,
+          "severity": 3.0,
+          "description": "Magic number '90' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 245,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 248,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 301,
+          "severity": 3.0,
+          "description": "Magic number '30' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 314,
+          "severity": 3.0,
+          "description": "Magic number '40' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 315,
+          "severity": 3.0,
+          "description": "Magic number '25' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 327,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 329,
+          "severity": 3.0,
+          "description": "Magic number '42' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/core/static_analyzer/code_quality.py",
+      "smell_count": 22,
+      "total_severity": 75.1,
+      "avg_severity": 3.4,
+      "smells": [
+        {
+          "type": "long_function",
+          "line": 27,
+          "severity": 8.1,
+          "description": "Function 'analyze' is 81 lines long"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 27,
+          "severity": 3.0,
+          "description": "Function 'analyze' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 210,
+          "severity": 4.0,
+          "description": "Function '_calculate_python_complexity' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 234,
+          "severity": 4.0,
+          "description": "Function '_calculate_comment_ratio' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 255,
+          "severity": 4.5,
+          "description": "Function '_calculate_python_naming_score' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 284,
+          "severity": 3.5,
+          "description": "Function '_calculate_js_naming_score' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 57,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 61,
+          "severity": 3.0,
+          "description": "Magic number '20' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 88,
+          "severity": 3.0,
+          "description": "Magic number '20' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 88,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 89,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 91,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 93,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 103,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 104,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 105,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 120,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 270,
+          "severity": 3.0,
+          "description": "Magic number '9' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 298,
+          "severity": 3.0,
+          "description": "Magic number '9' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 304,
+          "severity": 3.0,
+          "description": "Magic number '9' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 316,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 318,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/core/analyzer.py",
+      "smell_count": 19,
+      "total_severity": 74.5,
+      "avg_severity": 3.9,
+      "smells": [
+        {
+          "type": "long_function",
+          "line": 53,
+          "severity": 9.0,
+          "description": "Function 'analyze' is 90 lines long"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 53,
+          "severity": 5.0,
+          "description": "Function 'analyze' has complex conditional logic"
+        },
+        {
+          "type": "long_function",
+          "line": 193,
+          "severity": 10.0,
+          "description": "Function '_generate_recommendations' is 117 lines long"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 193,
+          "severity": 5.5,
+          "description": "Function '_generate_recommendations' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 82,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 88,
+          "severity": 3.0,
+          "description": "Magic number '4' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 94,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 100,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 106,
+          "severity": 3.0,
+          "description": "Magic number '7' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 114,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 200,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 228,
+          "severity": 3.0,
+          "description": "Magic number '7' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 238,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 245,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 249,
+          "severity": 3.0,
+          "description": "Magic number '7' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 268,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 287,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 296,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 306,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/core/docs_analyzer/documentation.py",
+      "smell_count": 18,
+      "total_severity": 60.4,
+      "avg_severity": 3.4,
+      "smells": [
+        {
+          "type": "long_function",
+          "line": 69,
+          "severity": 5.9,
+          "description": "Function '_analyze_readme_quality' is 59 lines long"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 69,
+          "severity": 5.0,
+          "description": "Function '_analyze_readme_quality' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 153,
+          "severity": 3.0,
+          "description": "Function '_analyze_python_docstrings' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 258,
+          "severity": 4.5,
+          "description": "Function '_count_doc_files' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 62,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 63,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 86,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 98,
+          "severity": 3.0,
+          "description": "Magic number '200' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 99,
+          "severity": 3.0,
+          "description": "Magic number '2.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 156,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 215,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 289,
+          "severity": 3.0,
+          "description": "Magic number '30' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 290,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 292,
+          "severity": 3.0,
+          "description": "Magic number '25' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 293,
+          "severity": 3.0,
+          "description": "Magic number '2.5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 295,
+          "severity": 3.0,
+          "description": "Magic number '20' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 305,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 305,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/scripts/demo.py",
+      "smell_count": 17,
+      "total_severity": 51.0,
+      "avg_severity": 3.0,
+      "smells": [
+        {
+          "type": "magic_number",
+          "line": 63,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 63,
+          "severity": 3.0,
+          "description": "Magic number '4' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 63,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 70,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 121,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 122,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 142,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 151,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 151,
+          "severity": 3.0,
+          "description": "Magic number '75' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 151,
+          "severity": 3.0,
+          "description": "Magic number '200' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 153,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 153,
+          "severity": 3.0,
+          "description": "Magic number '300' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 153,
+          "severity": 3.0,
+          "description": "Magic number '75' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 153,
+          "severity": 3.0,
+          "description": "Magic number '400' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 159,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 193,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 236,
+          "severity": 3.0,
+          "description": "Magic number '40' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/cli/main.py",
+      "smell_count": 11,
+      "total_severity": 42.1,
+      "avg_severity": 3.8,
+      "smells": [
+        {
+          "type": "long_function",
+          "line": 31,
+          "severity": 9.1,
+          "description": "Function 'analyze' is 91 lines long"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 31,
+          "severity": 6.0,
+          "description": "Function 'analyze' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 188,
+          "severity": 3.0,
+          "description": "Function '_display_summary' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 193,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 193,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 218,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 220,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 222,
+          "severity": 3.0,
+          "description": "Magic number '4' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 234,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 242,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 261,
+          "severity": 3.0,
+          "description": "Magic number '20' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/core/static_analyzer/architecture.py",
+      "smell_count": 12,
+      "total_severity": 38.0,
+      "avg_severity": 3.2,
+      "smells": [
+        {
+          "type": "complex_conditional",
+          "line": 107,
+          "severity": 3.0,
+          "description": "Function '_extract_python_imports' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 195,
+          "severity": 4.5,
+          "description": "Function '_calculate_python_cohesion' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 275,
+          "severity": 3.5,
+          "description": "Function '_categorize_methods' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 95,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 191,
+          "severity": 3.0,
+          "description": "Magic number '7.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 198,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 255,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 312,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 354,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 368,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 368,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 369,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/core/static_analyzer/code_smells.py",
+      "smell_count": 12,
+      "total_severity": 36.0,
+      "avg_severity": 3.0,
+      "smells": [
+        {
+          "type": "complex_conditional",
+          "line": 226,
+          "severity": 3.0,
+          "description": "Function '_check_python_class_smells' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 281,
+          "severity": 3.0,
+          "description": "Function '_check_dead_code' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 85,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 174,
+          "severity": 3.0,
+          "description": "Magic number '200' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 214,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 241,
+          "severity": 3.0,
+          "description": "Magic number '20' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 241,
+          "severity": 3.0,
+          "description": "Magic number '500' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 242,
+          "severity": 3.0,
+          "description": "Magic number '5' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 259,
+          "severity": 3.0,
+          "description": "Magic number '9' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 274,
+          "severity": 3.0,
+          "description": "Magic number '3.0' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 301,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 306,
+          "severity": 3.0,
+          "description": "Magic number '4.0' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/core/test_analyzer/coverage.py",
+      "smell_count": 7,
+      "total_severity": 21.0,
+      "avg_severity": 3.0,
+      "smells": [
+        {
+          "type": "complex_conditional",
+          "line": 96,
+          "severity": 3.0,
+          "description": "Function '_find_coverage_reports' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 58,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 59,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 185,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 222,
+          "severity": 3.0,
+          "description": "Magic number '20' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 231,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 231,
+          "severity": 3.0,
+          "description": "Magic number '6' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/visualization/generator.py",
+      "smell_count": 4,
+      "total_severity": 16.1,
+      "avg_severity": 4.0,
+      "smells": [
+        {
+          "type": "long_function",
+          "line": 126,
+          "severity": 7.1,
+          "description": "Function 'generate_metrics_chart_data' is 71 lines long"
+        },
+        {
+          "type": "magic_number",
+          "line": 60,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 209,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 277,
+          "severity": 3.0,
+          "description": "Magic number '3' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/core/git_parser/repository.py",
+      "smell_count": 3,
+      "total_severity": 9.5,
+      "avg_severity": 3.2,
+      "smells": [
+        {
+          "type": "complex_conditional",
+          "line": 249,
+          "severity": 3.5,
+          "description": "Function '_should_include_file' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 142,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 196,
+          "severity": 3.0,
+          "description": "Magic number '8' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/utils/helpers.py",
+      "smell_count": 3,
+      "total_severity": 9.0,
+      "avg_severity": 3.0,
+      "smells": [
+        {
+          "type": "complex_conditional",
+          "line": 110,
+          "severity": 3.0,
+          "description": "Function 'extract_imports_from_python' has complex conditional logic"
+        },
+        {
+          "type": "complex_conditional",
+          "line": 150,
+          "severity": 3.0,
+          "description": "Function 'calculate_lines_of_code' has complex conditional logic"
+        },
+        {
+          "type": "magic_number",
+          "line": 15,
+          "severity": 3.0,
+          "description": "Magic number '256' found"
+        }
+      ]
+    },
+    {
+      "file": "/Users/kadirhan/Desktop/Githubbbbb/repo_health_analyzer/models/report.py",
+      "smell_count": 2,
+      "total_severity": 6.0,
+      "avg_severity": 3.0,
+      "smells": [
+        {
+          "type": "magic_number",
+          "line": 171,
+          "severity": 3.0,
+          "description": "Magic number '50' found"
+        },
+        {
+          "type": "magic_number",
+          "line": 172,
+          "severity": 3.0,
+          "description": "Magic number '7' found"
+        }
+      ]
+    }
+  ]
+}

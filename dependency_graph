@@ -1,0 +1,16 @@
+// Repository Dependencies
+digraph {
+	rankdir=TB size="12,8"
+	node [fillcolor=lightblue shape=box style="rounded,filled"]
+	core [label=core]
+	cli [label=cli]
+	models [label=models]
+	utils [label=utils]
+	tests [label=tests]
+	core -> utils
+	core -> models
+	cli -> core
+	utils -> models
+	tests -> core
+	tests -> models
+}

@@ -151,6 +151,7 @@ class HealthReport(BaseModel):
     
     def save_json(self, output_path: str) -> None:
         """Save the report as JSON file."""
+        import json
         with open(output_path, 'w') as f:
             json.dump(self.model_dump(), f, indent=2, default=str)
     
