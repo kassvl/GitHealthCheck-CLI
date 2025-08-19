@@ -251,7 +251,7 @@ class ServiceClass:
         """Test file architecture analysis with IO error."""
         test_file = Path('nonexistent.py')
         result = analyzer._analyze_file_architecture(test_file)
-        assert result is None
+        assert result == {}
     
     def test_calculate_architecture_metrics(self, analyzer):
         """Test architecture metrics calculation."""

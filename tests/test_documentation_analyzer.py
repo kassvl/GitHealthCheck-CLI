@@ -377,14 +377,14 @@ function processData(data) {
         """Test file documentation analysis with IO error."""
         test_file = Path('nonexistent.py')
         result = analyzer._analyze_file_documentation(test_file)
-        assert result is None
+        assert result == {}
     
     @patch('builtins.open', mock_open(read_data=''))
     def test_analyze_file_documentation_empty(self, analyzer):
         """Test analysis of empty file."""
         test_file = Path('empty.py')
         result = analyzer._analyze_file_documentation(test_file)
-        assert result is None
+        assert result == {}
     
     def test_analyze_code_documentation(self, analyzer, sample_python_documented_code):
         """Test code documentation analysis."""

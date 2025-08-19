@@ -413,8 +413,13 @@ class ArchitectureAnalyzer:
                 depths.append(depth)
             avg_depth = sum(depths) / len(depths) if depths else 1.5
         
-        # SOLID violations
-        srp_violations = len([v for v in violations if v['type'] == 'solid_srp'])
+        # SOLID violations - handle both string and dict violations
+        srp_violations = 0
+        for v in violations:
+            if isinstance(v, dict) and v.get('type') == 'solid_srp':
+                srp_violations += 1
+            elif isinstance(v, str) and 'solid_srp' in v:
+                srp_violations += 1
         
         # Overall architecture score
         violation_penalty = min(5, len(violations) * 0.1)

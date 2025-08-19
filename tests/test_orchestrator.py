@@ -263,6 +263,9 @@ class TestMetricsCalculator:
         # Create mock sub-metrics with proper numeric attributes
         code_quality_mock = Mock()
         code_quality_mock.overall_score = 5.0
+        code_quality_mock.comment_density = 0.15
+        code_quality_mock.function_length_avg = 25.0
+        code_quality_mock.naming_consistency = 0.8
         overall_metrics.code_quality = code_quality_mock
         
         architecture_mock = Mock()
@@ -318,6 +321,9 @@ class TestMetricsCalculator:
         
         code_quality_mock = Mock()
         code_quality_mock.overall_score = 9.5
+        code_quality_mock.comment_density = 0.25
+        code_quality_mock.function_length_avg = 15.0
+        code_quality_mock.naming_consistency = 0.95
         overall_metrics.code_quality = code_quality_mock
         
         architecture_mock = Mock()
@@ -362,6 +368,9 @@ class TestMetricsCalculator:
         
         code_quality_mock = Mock()
         code_quality_mock.overall_score = 1.5
+        code_quality_mock.comment_density = 0.05
+        code_quality_mock.function_length_avg = 80.0
+        code_quality_mock.naming_consistency = 0.3
         overall_metrics.code_quality = code_quality_mock
         
         architecture_mock = Mock()
@@ -409,6 +418,23 @@ class TestMetricsCalculator:
 
 class TestOrchestrationWorkflow:
     """Test cases for orchestration workflow."""
+    
+    @pytest.fixture
+    def orchestrator(self):
+        """Create basic orchestrator instance for testing."""
+        return AnalysisOrchestrator(verbose=False)
+    
+    @pytest.fixture
+    def verbose_orchestrator(self):
+        """Create verbose orchestrator instance for testing."""
+        return AnalysisOrchestrator(verbose=True)
+    
+    @pytest.fixture
+    def mock_analyzer(self):
+        """Create mock analyzer for testing."""
+        analyzer = Mock()
+        analyzer.analyze = Mock(return_value={'result': 'test_data'})
+        return analyzer
     
     @pytest.fixture
     def orchestrator_with_steps(self):

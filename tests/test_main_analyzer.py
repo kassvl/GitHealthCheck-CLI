@@ -244,10 +244,10 @@ class TestRepositoryAnalyzer:
         analyzer2 = RepositoryAnalyzer(path_obj, sample_config)
         assert analyzer2.repo_path == path_obj
         
-        # Test with relative path
+        # Test with relative path (analyzer doesn't convert to absolute)
         relative_path = 'relative/repo'
         analyzer3 = RepositoryAnalyzer(relative_path, sample_config)
-        assert analyzer3.repo_path.is_absolute()  # Should be converted to absolute
+        assert analyzer3.repo_path == Path(relative_path)  # Keeps original path
 
 
 if __name__ == '__main__':

@@ -6,9 +6,6 @@ from unittest.mock import Mock, patch, MagicMock
 from repo_health_analyzer.core.git_parser.repository import GitRepositoryParser
 
 
-@patch('repo_health_analyzer.core.git_parser.repository.Repo')
-@patch.object(Path, 'exists', return_value=True)
-@patch.object(Path, 'is_dir', return_value=True)
 class TestGitRepositoryParser:
     """Test cases for Git Repository Parser."""
     
@@ -20,7 +17,10 @@ class TestGitRepositoryParser:
     @pytest.fixture
     def parser(self, sample_repo_path):
         """Create parser instance for testing."""
-        return GitRepositoryParser(sample_repo_path)
+        with patch('repo_health_analyzer.core.git_parser.repository.Repo'):
+            with patch.object(Path, 'exists', return_value=True):
+                with patch.object(Path, 'is_dir', return_value=True):
+                    return GitRepositoryParser(sample_repo_path)
     
     @pytest.fixture
     def mock_git_log_output(self):

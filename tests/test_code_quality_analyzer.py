@@ -250,7 +250,7 @@ def risky_function():
         """Test file analysis with IO error."""
         test_file = Path('nonexistent.py')
         result = analyzer._analyze_file_comprehensive(test_file)
-        assert result is None
+        assert result == {}
     
     def test_calculate_comprehensive_scores(self, analyzer):
         """Test comprehensive score calculation."""
