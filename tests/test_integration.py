@@ -7,6 +7,7 @@ from repo_health_analyzer.core.analyzer import RepositoryAnalyzer
 from repo_health_analyzer.models.simple_report import AnalysisConfig
 
 
+@patch('repo_health_analyzer.core.analyzer.GitRepositoryParser')
 class TestRepositoryAnalyzerIntegration:
     """Integration test cases for the complete system."""
     
@@ -21,7 +22,7 @@ class TestRepositoryAnalyzerIntegration:
         return AnalysisConfig(
             include_patterns=['*.py', '*.js'],
             exclude_patterns=['*/node_modules/*', '*/venv/*'],
-            max_file_size=1024*1024  # 1MB
+            max_file_size_mb=1  # 1MB
         )
     
     @pytest.fixture
@@ -423,7 +424,7 @@ Date: 2024-01-05 09:15:00 +0000
         
         return mock_run_side_effect
     
-    def test_analyzer_initialization(self, sample_repo_path, sample_config):
+    def test_analyzer_initialization(self, mock_git_parser, sample_repo_path, sample_config):
         """Test analyzer initialization."""
         analyzer = RepositoryAnalyzer(sample_repo_path, sample_config, verbose=False)
         
@@ -443,7 +444,7 @@ Date: 2024-01-05 09:15:00 +0000
     @patch('pathlib.Path.rglob')
     @patch('pathlib.Path.is_file')
     @patch('pathlib.Path.exists')
-    def test_full_analysis_integration(self, mock_exists, mock_is_file, mock_rglob, 
+    def test_full_analysis_integration(self, mock_git_parser, mock_exists, mock_is_file, mock_rglob, 
                                      mock_open_builtin, mock_subprocess,
                                      sample_repo_path, sample_config, 
                                      mock_file_system, mock_git_operations):
@@ -688,13 +689,13 @@ class GodClassThatDoesEverything:
             analyzer.generate_visualizations(result)
             mock_generate.assert_called_once_with(result, sample_repo_path)
     
-    def test_configuration_handling(self, sample_repo_path):
+    def test_configuration_handling(self, mock_git_parser, sample_repo_path):
         """Test different configuration options."""
         # Test with custom config
         custom_config = AnalysisConfig(
             include_patterns=['*.py'],
             exclude_patterns=['*/test*'],
-            max_file_size=500000
+            max_file_size_mb=1
         )
         
         analyzer = RepositoryAnalyzer(sample_repo_path, custom_config, verbose=True)
@@ -706,7 +707,7 @@ class GodClassThatDoesEverything:
         assert analyzer_default.config is not None
         assert analyzer_default.verbose == False
     
-    def test_error_handling_in_orchestrator(self, sample_repo_path):
+    def test_error_handling_in_orchestrator(self, mock_git_parser, sample_repo_path):
         """Test error handling in the orchestration process."""
         analyzer = RepositoryAnalyzer(sample_repo_path, verbose=False)
         

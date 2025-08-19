@@ -7,6 +7,7 @@ from repo_health_analyzer.core.analyzer import RepositoryAnalyzer
 from repo_health_analyzer.models.simple_report import AnalysisConfig
 
 
+@patch('repo_health_analyzer.core.analyzer.GitRepositoryParser')
 class TestRepositoryAnalyzer:
     """Test cases for the main Repository Analyzer."""
     
@@ -23,7 +24,7 @@ class TestRepositoryAnalyzer:
             exclude_patterns=['*/node_modules/*', '*/venv/*']
         )
     
-    def test_analyzer_initialization_with_config(self, sample_repo_path, sample_config):
+    def test_analyzer_initialization_with_config(self, mock_git_parser, sample_repo_path, sample_config):
         """Test analyzer initialization with custom config."""
         analyzer = RepositoryAnalyzer(sample_repo_path, sample_config, verbose=True)
         
@@ -34,7 +35,7 @@ class TestRepositoryAnalyzer:
         assert analyzer.orchestrator is not None
         assert analyzer.visualizer is not None
     
-    def test_analyzer_initialization_default_config(self, sample_repo_path):
+    def test_analyzer_initialization_default_config(self, mock_git_parser, sample_repo_path):
         """Test analyzer initialization with default config."""
         analyzer = RepositoryAnalyzer(sample_repo_path)
         
@@ -43,7 +44,7 @@ class TestRepositoryAnalyzer:
         assert analyzer.verbose == False
         assert analyzer.console is None
     
-    def test_analyzer_initialization_string_path(self):
+    def test_analyzer_initialization_string_path(self, mock_git_parser):
         """Test analyzer initialization with string path."""
         string_path = '/fake/test/repo'
         analyzer = RepositoryAnalyzer(string_path)
@@ -51,7 +52,7 @@ class TestRepositoryAnalyzer:
         assert analyzer.repo_path == Path(string_path)
         assert analyzer.repo_path.is_absolute()
     
-    def test_initialize_analyzers(self, sample_repo_path):
+    def test_initialize_analyzers(self, mock_git_parser, sample_repo_path):
         """Test analyzer module initialization."""
         analyzer = RepositoryAnalyzer(sample_repo_path)
         
@@ -72,7 +73,7 @@ class TestRepositoryAnalyzer:
         assert analyzer.documentation_analyzer.config == analyzer.config
         assert analyzer.sustainability_analyzer.config == analyzer.config
     
-    def test_setup_analysis_workflow(self, sample_repo_path):
+    def test_setup_analysis_workflow(self, mock_git_parser, sample_repo_path):
         """Test analysis workflow setup."""
         analyzer = RepositoryAnalyzer(sample_repo_path)
         
@@ -108,7 +109,7 @@ class TestRepositoryAnalyzer:
     @patch('subprocess.run')
     @patch('pathlib.Path.exists')
     @patch('pathlib.Path.rglob')
-    def test_analyze_error_handling(self, mock_rglob, mock_exists, mock_subprocess, sample_repo_path):
+    def test_analyze_error_handling(self, mock_git_parser, mock_rglob, mock_exists, mock_subprocess, sample_repo_path):
         """Test error handling during analysis."""
         # Setup mocks
         mock_exists.return_value = True
@@ -128,7 +129,7 @@ class TestRepositoryAnalyzer:
                 # If it does raise an exception, it should be handled by orchestrator
                 assert "Test error" in str(e) or "Cannot resolve dependencies" in str(e)
     
-    def test_generate_visualizations(self, sample_repo_path):
+    def test_generate_visualizations(self, mock_git_parser, sample_repo_path):
         """Test visualization generation."""
         analyzer = RepositoryAnalyzer(sample_repo_path)
         
@@ -142,7 +143,7 @@ class TestRepositoryAnalyzer:
             analyzer.generate_visualizations(mock_report)
             mock_generate.assert_called_once_with(mock_report, sample_repo_path)
     
-    def test_orchestrator_registration(self, sample_repo_path):
+    def test_orchestrator_registration(self, mock_git_parser, sample_repo_path):
         """Test that all analysis steps are properly registered."""
         analyzer = RepositoryAnalyzer(sample_repo_path)
         orchestrator = analyzer.orchestrator
@@ -169,7 +170,7 @@ class TestRepositoryAnalyzer:
         assert steps_by_name['documentation']['analyzer'] == analyzer.documentation_analyzer
         assert steps_by_name['sustainability']['analyzer'] == analyzer.sustainability_analyzer
     
-    def test_context_preparation(self, sample_repo_path, sample_config):
+    def test_context_preparation(self, mock_git_parser, sample_repo_path, sample_config):
         """Test analysis context preparation."""
         analyzer = RepositoryAnalyzer(sample_repo_path, sample_config)
         
@@ -199,7 +200,7 @@ class TestRepositoryAnalyzer:
             assert context_captured['exclude_patterns'] == sample_config.exclude_patterns
     
     @patch('time.time')
-    def test_analysis_timing(self, mock_time, sample_repo_path):
+    def test_analysis_timing(self, mock_git_parser, mock_time, sample_repo_path):
         """Test analysis timing measurement."""
         # Mock time to return predictable values
         mock_time.side_effect = [1000.0, 1005.5]  # 5.5 seconds duration
@@ -230,7 +231,7 @@ class TestRepositoryAnalyzer:
                                         # Check timing
                                         assert result.analysis_duration == 5.5
     
-    def test_path_conversion(self, sample_config):
+    def test_path_conversion(self, mock_git_parser, sample_config):
         """Test path conversion and normalization."""
         # Test with string path
         string_path = '/fake/repo'

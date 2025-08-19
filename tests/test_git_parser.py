@@ -6,6 +6,9 @@ from unittest.mock import Mock, patch, MagicMock
 from repo_health_analyzer.core.git_parser.repository import GitRepositoryParser
 
 
+@patch('repo_health_analyzer.core.git_parser.repository.Repo')
+@patch.object(Path, 'exists', return_value=True)
+@patch.object(Path, 'is_dir', return_value=True)
 class TestGitRepositoryParser:
     """Test cases for Git Repository Parser."""
     

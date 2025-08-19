@@ -170,8 +170,11 @@ class TestAnalysisOrchestrator:
         # Second analyzer that depends on first
         analyzer2 = Mock()
         
-        def mock_analyze(source_files):
-            return {'analyzed_files': len(source_files)}
+        def mock_analyze(*args, **kwargs):
+            source_files = kwargs.get('source_files', args[0] if args else [])
+            if hasattr(source_files, '__len__'):
+                return {'analyzed_files': len(source_files)}
+            return {'analyzed_files': 0}
         
         analyzer2.analyze = mock_analyze
         
@@ -253,15 +256,39 @@ class TestMetricsCalculator:
     
     def test_generate_recommendations(self):
         """Test recommendation generation."""
-        # Create mock overall metrics
+        # Create mock overall metrics with proper numeric attributes
         overall_metrics = Mock()
         overall_metrics.overall_score = 6.5
-        overall_metrics.code_quality = Mock(overall_score=5.0)
-        overall_metrics.architecture = Mock(score=7.0, circular_dependencies=2)
-        overall_metrics.code_smells = Mock(severity_score=4.0, total_count=15)
-        overall_metrics.tests = Mock(coverage_score=3.0, test_files_count=2)
-        overall_metrics.documentation = Mock(score=4.5, docstring_coverage=0.3)
-        overall_metrics.sustainability = Mock(score=8.0, bus_factor=1)
+        
+        # Create mock sub-metrics with proper numeric attributes
+        code_quality_mock = Mock()
+        code_quality_mock.overall_score = 5.0
+        overall_metrics.code_quality = code_quality_mock
+        
+        architecture_mock = Mock()
+        architecture_mock.score = 7.0
+        architecture_mock.circular_dependencies = 2
+        overall_metrics.architecture = architecture_mock
+        
+        code_smells_mock = Mock()
+        code_smells_mock.severity_score = 4.0
+        code_smells_mock.total_count = 15
+        overall_metrics.code_smells = code_smells_mock
+        
+        tests_mock = Mock()
+        tests_mock.coverage_score = 3.0
+        tests_mock.test_files_count = 2
+        overall_metrics.tests = tests_mock
+        
+        documentation_mock = Mock()
+        documentation_mock.score = 4.5
+        documentation_mock.docstring_coverage = 0.3
+        overall_metrics.documentation = documentation_mock
+        
+        sustainability_mock = Mock()
+        sustainability_mock.score = 8.0
+        sustainability_mock.bus_factor = 1
+        overall_metrics.sustainability = sustainability_mock
         
         recommendations = MetricsCalculator.generate_recommendations(overall_metrics)
         
@@ -285,15 +312,38 @@ class TestMetricsCalculator:
     
     def test_generate_recommendations_high_scores(self):
         """Test recommendation generation with high scores."""
-        # Create mock metrics with high scores
+        # Create mock metrics with high scores and proper numeric attributes
         overall_metrics = Mock()
         overall_metrics.overall_score = 9.0
-        overall_metrics.code_quality = Mock(overall_score=9.5)
-        overall_metrics.architecture = Mock(score=9.0, circular_dependencies=0)
-        overall_metrics.code_smells = Mock(severity_score=9.2, total_count=2)
-        overall_metrics.tests = Mock(coverage_score=8.5, test_files_count=25)
-        overall_metrics.documentation = Mock(score=8.0, docstring_coverage=0.9)
-        overall_metrics.sustainability = Mock(score=9.0, bus_factor=5)
+        
+        code_quality_mock = Mock()
+        code_quality_mock.overall_score = 9.5
+        overall_metrics.code_quality = code_quality_mock
+        
+        architecture_mock = Mock()
+        architecture_mock.score = 9.0
+        architecture_mock.circular_dependencies = 0
+        overall_metrics.architecture = architecture_mock
+        
+        code_smells_mock = Mock()
+        code_smells_mock.severity_score = 9.2
+        code_smells_mock.total_count = 2
+        overall_metrics.code_smells = code_smells_mock
+        
+        tests_mock = Mock()
+        tests_mock.coverage_score = 8.5
+        tests_mock.test_files_count = 25
+        overall_metrics.tests = tests_mock
+        
+        documentation_mock = Mock()
+        documentation_mock.score = 8.0
+        documentation_mock.docstring_coverage = 0.9
+        overall_metrics.documentation = documentation_mock
+        
+        sustainability_mock = Mock()
+        sustainability_mock.score = 9.0
+        sustainability_mock.bus_factor = 5
+        overall_metrics.sustainability = sustainability_mock
         
         recommendations = MetricsCalculator.generate_recommendations(overall_metrics)
         
@@ -306,15 +356,38 @@ class TestMetricsCalculator:
     
     def test_recommendation_priority_assignment(self):
         """Test that recommendations get appropriate priority levels."""
-        # Test critical priority
+        # Test critical priority with proper numeric attributes
         overall_metrics = Mock()
         overall_metrics.overall_score = 2.0  # Very low
-        overall_metrics.code_quality = Mock(overall_score=1.5)
-        overall_metrics.architecture = Mock(score=2.0, circular_dependencies=5)
-        overall_metrics.code_smells = Mock(severity_score=1.0, total_count=50)
-        overall_metrics.tests = Mock(coverage_score=0.5, test_files_count=0)
-        overall_metrics.documentation = Mock(score=1.0, docstring_coverage=0.1)
-        overall_metrics.sustainability = Mock(score=2.0, bus_factor=1)
+        
+        code_quality_mock = Mock()
+        code_quality_mock.overall_score = 1.5
+        overall_metrics.code_quality = code_quality_mock
+        
+        architecture_mock = Mock()
+        architecture_mock.score = 2.0
+        architecture_mock.circular_dependencies = 5
+        overall_metrics.architecture = architecture_mock
+        
+        code_smells_mock = Mock()
+        code_smells_mock.severity_score = 1.0
+        code_smells_mock.total_count = 50
+        overall_metrics.code_smells = code_smells_mock
+        
+        tests_mock = Mock()
+        tests_mock.coverage_score = 0.5
+        tests_mock.test_files_count = 0
+        overall_metrics.tests = tests_mock
+        
+        documentation_mock = Mock()
+        documentation_mock.score = 1.0
+        documentation_mock.docstring_coverage = 0.1
+        overall_metrics.documentation = documentation_mock
+        
+        sustainability_mock = Mock()
+        sustainability_mock.score = 2.0
+        sustainability_mock.bus_factor = 1
+        overall_metrics.sustainability = sustainability_mock
         
         recommendations = MetricsCalculator.generate_recommendations(overall_metrics)
         
