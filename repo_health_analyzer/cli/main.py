@@ -17,7 +17,7 @@ from rich.table import Table
 from rich.panel import Panel
 
 from ..core.analyzer import RepositoryAnalyzer
-from ..models.report import HealthReport
+from ..models.simple_report import HealthReport
 
 app = typer.Typer(
     name="rha",
@@ -51,16 +51,18 @@ def analyze(
     """
     # Determine repository path
     if repo_path is None:
-        repo_path = os.getcwd()
+        repo_path_str = os.getcwd()
+    else:
+        repo_path_str = repo_path
     
-    repo_path = Path(repo_path).resolve()
+    repo_path_obj = Path(repo_path_str).resolve()
     
-    if not repo_path.exists():
-        console.print(f"[red]Error: Repository path does not exist: {repo_path}[/red]")
+    if not repo_path_obj.exists():
+        console.print(f"[red]Error: Repository path does not exist: {repo_path_obj}[/red]")
         sys.exit(1)
     
-    if not (repo_path / ".git").exists():
-        console.print(f"[red]Error: Not a git repository: {repo_path}[/red]")
+    if not (repo_path_obj / ".git").exists():
+        console.print(f"[red]Error: Not a git repository: {repo_path_obj}[/red]")
         sys.exit(1)
     
     console.print(f"[green]Analyzing repository:[/green] {repo_path}")
@@ -73,7 +75,7 @@ def analyze(
         ) as progress:
             # Initialize analyzer
             task = progress.add_task("Initializing analyzer...", total=None)
-            analyzer = RepositoryAnalyzer(repo_path, verbose=verbose)
+            analyzer = RepositoryAnalyzer(repo_path_obj, verbose=verbose)
             
             # Run analysis
             progress.update(task, description="Running comprehensive analysis...")
@@ -93,12 +95,12 @@ def analyze(
         output_path = output or "health_report.json"
         if format_type == "json":
             with open(output_path, "w") as f:
-                json.dump(health_report.model_dump(), f, indent=2, default=str)
+                json.dump(health_report.__dict__, f, indent=2, default=str)
         elif format_type == "yaml":
             import yaml
             output_path = output or "health_report.yaml"
             with open(output_path, "w") as f:
-                yaml.dump(health_report.model_dump(), f, default_flow_style=False)
+                yaml.dump(health_report.__dict__, f, default_flow_style=False)
         elif format_type == "summary":
             output_path = output or "health_summary.txt"
             with open(output_path, "w") as f:
@@ -135,17 +137,19 @@ def validate(
     Performs quick checks to ensure the repository is suitable for analysis.
     """
     if repo_path is None:
-        repo_path = os.getcwd()
+        repo_path_str = os.getcwd()
+    else:
+        repo_path_str = repo_path
     
-    repo_path = Path(repo_path).resolve()
+    repo_path_obj = Path(repo_path_str).resolve()
     
-    console.print(f"[blue]Validating repository:[/blue] {repo_path}")
+    console.print(f"[blue]Validating repository:[/blue] {repo_path_obj}")
     
     checks = [
-        ("Repository exists", repo_path.exists()),
-        ("Is git repository", (repo_path / ".git").exists()),
-        ("Has source files", _has_source_files(repo_path)),
-        ("Readable permissions", os.access(repo_path, os.R_OK)),
+        ("Repository exists", repo_path_obj.exists()),
+        ("Is git repository", (repo_path_obj / ".git").exists()),
+        ("Has source files", _has_source_files(repo_path_obj)),
+        ("Readable permissions", os.access(repo_path_obj, os.R_OK)),
     ]
     
     table = Table(title="Repository Validation")

@@ -9,7 +9,7 @@ import os
 import mimetypes
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import List, Dict, Any, Set
+from typing import List, Dict, Any, Set, Optional, Mapping
 from collections import defaultdict
 
 import git
@@ -45,7 +45,7 @@ class GitRepositoryParser:
         # Get repository statistics
         total_files, total_lines, languages = self._analyze_files()
         commit_count = len(list(self.repo.iter_commits()))
-        contributors = len(set(commit.author.email for commit in self.repo.iter_commits()))
+        contributors = list(set(commit.author.email for commit in self.repo.iter_commits()))
         
         # Calculate repository age
         try:
@@ -66,7 +66,7 @@ class GitRepositoryParser:
             age_days=age_days
         )
     
-    def get_source_files(self, include_patterns: List[str] = None, exclude_patterns: List[str] = None) -> List[Path]:
+    def get_source_files(self, include_patterns: Optional[List[str]] = None, exclude_patterns: Optional[List[str]] = None) -> List[Path]:
         """
         Get list of source files matching include/exclude patterns.
         
@@ -77,7 +77,7 @@ class GitRepositoryParser:
         Returns:
             List[Path]: List of source file paths
         """
-        source_files = []
+        source_files: List[Path] = []
         include_patterns = include_patterns or ['*.py', '*.js', '*.ts', '*.java', '*.cpp', '*.c', '*.go', '*.rs', '*.rb', '*.php']
         exclude_patterns = exclude_patterns or ['*/node_modules/*', '*/.git/*', '*/venv/*', '*/__pycache__/*']
         
@@ -151,7 +151,7 @@ class GitRepositoryParser:
         """
         total_files = 0
         total_lines = 0
-        languages = defaultdict(int)
+        languages: Dict[str, int] = defaultdict(int)
 
         # Heuristics to avoid scanning extremely large trees / files
         excluded_dir_names = {
