@@ -4,7 +4,7 @@ Analysis orchestrator for coordinating different analysis modules.
 Separates the orchestration logic from the main analyzer to improve modularity.
 """
 
-from typing import Dict, Any, List, Set
+from typing import Dict, Any, List, Set, Optional
 from pathlib import Path
 
 from ..models.simple_report import OverallMetrics, Recommendation, Priority
@@ -23,7 +23,7 @@ class AnalysisOrchestrator:
         self.analysis_steps: List[Dict[str, Any]] = []
         self.api_instance = None
     
-    def register_step(self, name: str, analyzer, method_name: str, dependencies: List[str] = None):
+    def register_step(self, name: str, analyzer, method_name: str, dependencies: Optional[List[str]] = None):
         """Register an analysis step with its dependencies."""
         self.analysis_steps.append({
             'name': name,

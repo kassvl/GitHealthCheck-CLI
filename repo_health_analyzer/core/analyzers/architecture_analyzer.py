@@ -157,7 +157,7 @@ class ArchitectureAnalyzer:
             return {}
         
         if not content.strip():
-            return None
+            return {}
         
         # Detect language
         language = self._detect_language(file_path.suffix.lower())

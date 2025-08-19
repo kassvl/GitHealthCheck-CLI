@@ -2,8 +2,8 @@
 Simple data classes without Pydantic for speed.
 """
 
-from dataclasses import dataclass
-from datetime import datetime
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
 from enum import Enum
 
@@ -27,34 +27,30 @@ class Recommendation:
     title: Optional[str] = None
     file_path: Optional[str] = None
     line_number: Optional[int] = None
-    files_affected: List[str] = None
+    files_affected: List[str] = field(default_factory=list)
     
     def __post_init__(self):
-        if self.files_affected is None:
-            self.files_affected = []
+        # No longer needed as we use field(default_factory=list)
+        pass
 
 
 @dataclass
 class RepositoryInfo:
     path: str
     name: str
-    analyzed_at: datetime = None
+    analyzed_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     total_files: int = 0
     total_lines: int = 0
-    languages: Dict[str, float] = None
+    languages: Dict[str, float] = field(default_factory=dict)
     commit_count: int = 0
-    contributors: List[str] = None
+    contributors: List[str] = field(default_factory=list)
     age_days: int = 0
     branch: str = "main"
     total_commits: int = 0
     
     def __post_init__(self):
-        if self.analyzed_at is None:
-            self.analyzed_at = datetime.now()
-        if self.languages is None:
-            self.languages = {}
-        if self.contributors is None:
-            self.contributors = []
+        # No longer needed as we use field(default_factory)
+        pass
 
 
 @dataclass
@@ -103,7 +99,7 @@ class TestMetrics:
     test_success_rate: float
     has_coverage_report: bool
     coverage_percentage: Optional[float] = None
-    uncovered_files: List[str] = None
+    uncovered_files: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -141,8 +137,8 @@ class OverallMetrics:
 
 @dataclass
 class AnalysisConfig:
-    include_patterns: List[str] = None
-    exclude_patterns: List[str] = None
+    include_patterns: List[str] = field(default_factory=list)
+    exclude_patterns: List[str] = field(default_factory=list)
     max_file_size_mb: int = 10
     enable_ml_prediction: bool = True
     complexity_threshold: int = 10
@@ -151,9 +147,10 @@ class AnalysisConfig:
     duplication_threshold: float = 0.1
     
     def __post_init__(self):
-        if self.include_patterns is None:
+        # Set default patterns if empty lists
+        if not self.include_patterns:
             self.include_patterns = ["*.py", "*.js", "*.ts"]
-        if self.exclude_patterns is None:
+        if not self.exclude_patterns:
             self.exclude_patterns = ["*/node_modules/*", "*/.git/*", "*/venv/*"]
 
 
