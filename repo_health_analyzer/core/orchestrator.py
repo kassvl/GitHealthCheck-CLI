@@ -213,7 +213,7 @@ class MetricsCalculator:
                 effort="medium"
             ))
         
-        if metrics.code_quality.comment_density < 0.1:
+        if hasattr(metrics.code_quality, 'comment_density') and getattr(metrics.code_quality, 'comment_density', 1.0) < 0.1:
             recommendations.append(Recommendation(
                 priority=Priority.MEDIUM,
                 category="Code Quality",
@@ -223,7 +223,7 @@ class MetricsCalculator:
             ))
         
         # Architecture recommendations
-        if metrics.architecture.circular_dependencies > 0:
+        if hasattr(metrics.architecture, 'circular_dependencies') and getattr(metrics.architecture, 'circular_dependencies', 0) > 0:
             recommendations.append(Recommendation(
                 priority=Priority.CRITICAL,
                 category="Architecture",
@@ -262,7 +262,7 @@ class MetricsCalculator:
                 effort="high"
             ))
         
-        if metrics.tests.test_to_source_ratio < 0.3:
+        if hasattr(metrics.tests, 'test_to_source_ratio') and getattr(metrics.tests, 'test_to_source_ratio', 1.0) < 0.3:
             recommendations.append(Recommendation(
                 priority=Priority.MEDIUM,
                 category="Testing",
