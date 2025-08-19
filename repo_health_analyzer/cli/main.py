@@ -35,9 +35,7 @@ def analyze(
     output: Optional[str] = typer.Option(
         None, "--output", "-o", help="Output file path for health report JSON"
     ),
-    visualize: bool = typer.Option(
-        False, "--visualize", "-v", help="Generate visualization files"
-    ),
+    # Visualization disabled - CLI-only mode
     verbose: bool = typer.Option(
         False, "--verbose", help="Enable verbose output"
     ),
@@ -83,11 +81,8 @@ def analyze(
             
             progress.update(task, description="Generating report...")
             
-            # Generate visualizations if requested
-            if visualize:
-                progress.update(task, description="Generating visualizations...")
-                analyzer.generate_visualizations(health_report)
-                console.print("[green]✓[/green] Visualizations generated")
+            # Visualization disabled - CLI-only mode
+            console.print("[blue]📊 Pure CLI mode - no visualizations generated[/blue]")
             
             progress.update(task, description="Finalizing report...")
         
@@ -111,8 +106,8 @@ def analyze(
         
         console.print(f"[green]✓[/green] Health report saved to: {output_path}")
         
-        if visualize:
-            console.print("[blue]📊[/blue] Visualization files generated in current directory")
+        # Visualization disabled - CLI-only mode
+        console.print("[blue]📊[/blue] Pure CLI mode - no visualization files generated")
         
     except Exception as e:
         console.print(f"[red]Error during analysis: {e}[/red]")

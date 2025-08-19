@@ -1,1 +1,7 @@
-"""CLI module for Repo Health Analyzer."""
+"""
+CLI package for Repository Health Analyzer.
+"""
+
+from .simple_main import main
+
+__all__ = ['main']

@@ -16,12 +16,30 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
 
 # Virtual environments
 .env
@@ -48,26 +66,13 @@ venv.bak/
 ehthumbs.db
 Thumbs.db
 
-# Testing
-.coverage
-.pytest_cache/
-.tox/
-htmlcov/
-
-# Analysis outputs
+# Project specific
+*.log
 health_report.json
-*.svg
-*.png
-dependency_graph.*
-heatmap.*
+analysis_results/
+test_reports/
+temp/
 
-# Temporary files
-*.tmp
-*.temp
-.cache/
-
-# ML models (if we save trained models)
-*.pkl
-*.joblib
-models/*.pkl
-models/*.joblib
+# Sample repositories for testing
+test_sample_repo/
+sample_repos/

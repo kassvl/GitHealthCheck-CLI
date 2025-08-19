@@ -1,1 +1,0 @@
-"""Static code analysis modules."""

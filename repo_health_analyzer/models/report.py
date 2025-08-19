@@ -30,6 +30,12 @@ class SmellType(str, Enum):
     MAGIC_NUMBER = "magic_number"
     COMPLEX_CONDITIONAL = "complex_conditional"
     FEATURE_ENVY = "feature_envy"
+    DEEP_NESTING = "deep_nesting"
+    BARE_EXCEPT = "bare_except"
+    MUTABLE_DEFAULT = "mutable_default"
+    LARGE_FILE = "large_file"
+    LONG_IMPORT = "long_import"
+    PRINT_STATEMENT = "print_statement"
 
 
 class RepositoryInfo(BaseModel):
@@ -54,6 +60,13 @@ class CodeQualityMetrics(BaseModel):
     naming_consistency: float
     duplication_ratio: float
     complexity_distribution: Dict[str, int] = Field(default_factory=dict)
+    # Language-agnostic craftsmanship signals
+    craftsmanship_score: float = 0.0
+    type_hint_coverage: float = 0.0
+    error_handling_density: float = 0.0
+    todo_density: float = 0.0
+    line_length_violations: float = 0.0
+    indentation_consistency: float = 1.0
 
 
 class ArchitectureMetrics(BaseModel):
@@ -172,3 +185,13 @@ class AnalysisConfig(BaseModel):
     function_length_threshold: int = 50
     parameter_count_threshold: int = 7
     duplication_threshold: float = 0.1
+    # Code smell analysis tuning
+    analyze_tests_for_smells: bool = False
+    smell_excluded_dirs: List[str] = Field(default_factory=lambda: [
+        "*/node_modules/*", "*/.git/*", "*/venv/*", "*/.venv/*", "*/build/*", "*/dist/*", "*/migrations/*"
+    ])
+    max_smell_hotspots: int = 15
+    deep_nesting_threshold: int = 4
+    large_file_lines_threshold: int = 1200
+    duplicate_block_min_lines: int = 5
+    max_duplicates_per_file: int = 5

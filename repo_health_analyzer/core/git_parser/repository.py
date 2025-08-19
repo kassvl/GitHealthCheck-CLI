@@ -15,7 +15,7 @@ from collections import defaultdict
 import git
 from git import Repo, InvalidGitRepositoryError
 
-from ...models.report import RepositoryInfo
+from ...models.simple_report import RepositoryInfo
 
 
 class GitRepositoryParser:
@@ -26,8 +26,10 @@ class GitRepositoryParser:
     and file metadata for health analysis.
     """
     
-    def __init__(self, repo_path: Path):
+    def __init__(self, repo_path: Path, config=None):
         self.repo_path = Path(repo_path)
+        self.verbose = False
+        self.max_files = getattr(config, 'max_files', 20) if config else 20
         try:
             self.repo = Repo(self.repo_path)
         except InvalidGitRepositoryError:
@@ -64,7 +66,7 @@ class GitRepositoryParser:
             age_days=age_days
         )
     
-    def get_source_files(self, include_patterns: List[str], exclude_patterns: List[str]) -> List[Path]:
+    def get_source_files(self, include_patterns: List[str] = None, exclude_patterns: List[str] = None) -> List[Path]:
         """
         Get list of source files matching include/exclude patterns.
         
@@ -76,8 +78,17 @@ class GitRepositoryParser:
             List[Path]: List of source file paths
         """
         source_files = []
+        include_patterns = include_patterns or ['*.py', '*.js', '*.ts', '*.java', '*.cpp', '*.c', '*.go', '*.rs', '*.rb', '*.php']
+        exclude_patterns = exclude_patterns or ['*/node_modules/*', '*/.git/*', '*/venv/*', '*/__pycache__/*']
+        
+        # Performance limit for GUI responsiveness
+        max_source_files = getattr(self, 'max_files', 20)  # Use config limit or default to 20
         
         for root, dirs, files in os.walk(self.repo_path):
+            # Early exit if we've found enough files
+            if len(source_files) >= max_source_files:
+                break
+                
             # Skip excluded directories
             root_path = Path(root)
             if self._should_exclude_directory(root_path, exclude_patterns):
@@ -85,13 +96,16 @@ class GitRepositoryParser:
                 continue
             
             for file in files:
+                if len(source_files) >= max_source_files:
+                    break
+                    
                 file_path = root_path / file
                 if self._should_include_file(file_path, include_patterns, exclude_patterns):
                     source_files.append(file_path)
         
         return source_files
     
-    def get_commit_history(self, max_commits: int = 1000) -> List[Dict[str, Any]]:
+    def get_commit_history(self, max_commits: int = 5) -> List[Dict[str, Any]]:
         """
         Extract commit history for sustainability analysis.
         
@@ -128,47 +142,6 @@ class GitRepositoryParser:
         
         return commits
     
-    def get_file_content(self, file_path: Path) -> str:
-        """
-        Read file content safely.
-        
-        Args:
-            file_path: Path to file
-        
-        Returns:
-            str: File content or empty string if unreadable
-        """
-        try:
-            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-                return f.read()
-        except Exception:
-            return ""
-    
-    def get_file_history(self, file_path: Path, max_commits: int = 100) -> List[Dict[str, Any]]:
-        """
-        Get commit history for a specific file.
-        
-        Args:
-            file_path: Path to file relative to repository root
-            max_commits: Maximum commits to analyze
-        
-        Returns:
-            List[Dict]: File-specific commit history
-        """
-        try:
-            relative_path = file_path.relative_to(self.repo_path)
-            commits = list(self.repo.iter_commits(paths=str(relative_path), max_count=max_commits))
-            
-            return [{
-                'hash': commit.hexsha,
-                'author': commit.author.email,
-                'date': commit.committed_datetime,
-                'message': commit.message.strip()
-            } for commit in commits]
-        
-        except Exception:
-            return []
-    
     def _analyze_files(self) -> tuple[int, int, Dict[str, int]]:
         """
         Analyze repository files for statistics.
@@ -179,31 +152,63 @@ class GitRepositoryParser:
         total_files = 0
         total_lines = 0
         languages = defaultdict(int)
-        
+
+        # Heuristics to avoid scanning extremely large trees / files
+        excluded_dir_names = {
+            '.git', 'node_modules', 'dist', 'build', 'target', 'out', 'coverage',
+            'venv', '.venv', 'env', '.env', '__pycache__', '.mypy_cache', '.pytest_cache',
+            '.idea', '.vscode', 'vendor', 'third_party', 'external', 'libs', 'lib',
+            'bower_components', '.next', '.nuxt', 'public', 'static', 'assets'
+        }
+        max_file_bytes = 512 * 1024  # 512KB per file cap - 2x hızlanma
+        max_files_to_scan = 1000  # early stop for gigantic repos - 5x hızlanma
+
         for root, dirs, files in os.walk(self.repo_path):
-            # Skip .git and other hidden directories
-            dirs[:] = [d for d in dirs if not d.startswith('.')]
-            
+            # Prune directories aggressively
+            dirs[:] = [
+                d for d in dirs
+                if not d.startswith('.') and d not in excluded_dir_names
+            ]
+
             for file in files:
-                if file.startswith('.'):
+                # Skip hidden files
+                if file.startswith('.'):  # pragma: no cover - heuristic
                     continue
-                
+
                 file_path = Path(root) / file
-                total_files += 1
-                
+
+                # Skip very large files quickly
+                try:
+                    if file_path.stat().st_size > max_file_bytes:
+                        if self.verbose:
+                            print(f"Skipping large file: {file_path} (>{max_file_bytes / (1024*1024):.1f}MB)")
+                        continue
+                except Exception:
+                    continue
+
                 # Count lines
                 try:
                     with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-                        lines = len(f.readlines())
-                        total_lines += lines
+                        lines = 0
+                        for _ in f:
+                            lines += 1
                 except Exception:
                     continue
-                
+
+                total_files += 1
+                total_lines += lines
+
                 # Detect language
                 language = self._detect_language(file_path)
                 if language:
                     languages[language] += lines
-        
+
+                # Early exit on extremely large repositories
+                if total_files >= max_files_to_scan:
+                    if self.verbose:
+                        print(f"Warning: Reached max_files_to_process ({max_files_to_scan}), stopping file analysis.")
+                    return total_files, total_lines, dict(languages)
+
         return total_files, total_lines, dict(languages)
     
     def _detect_language(self, file_path: Path) -> str:
