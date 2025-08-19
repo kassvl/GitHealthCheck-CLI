@@ -5,7 +5,7 @@ import pytest
 from pathlib import Path
 from unittest.mock import Mock, patch, mock_open
 from collections import Counter
-from repo_health_analyzer.core.analyzers.test_analyzer import TestAnalyzer
+from repo_health_analyzer.core.analyzers.test_analyzer import TestCodeAnalyzer
 from repo_health_analyzer.models.simple_report import AnalysisConfig
 
 
@@ -16,7 +16,7 @@ class TestTestAnalyzer:
     def analyzer(self):
         """Create analyzer instance for testing."""
         config = AnalysisConfig()
-        return TestAnalyzer(config)
+        return TestCodeAnalyzer(config)
     
     @pytest.fixture
     def sample_python_test_code(self):
