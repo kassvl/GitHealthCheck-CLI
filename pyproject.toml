@@ -37,7 +37,12 @@ dev = [
   "pytest-cov>=5.0.0",
   "black>=24.4.0",
   "flake8>=7.0.0",
-  "mypy>=1.10.0"
+  "mypy>=1.10.0",
+  # MyPy type stubs and additional dependencies
+  "types-PyYAML>=6.0.0",
+  "pydantic>=2.0.0",
+  "typer>=0.9.0",
+  "PyYAML>=6.0.0"
 ]
 
 [project.scripts]
