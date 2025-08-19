@@ -14,7 +14,7 @@ from .analyzers import (
     CodeQualityAnalyzer,
     ArchitectureAnalyzer,
     CodeSmellAnalyzer,
-    TestAnalyzer,
+    TestCodeAnalyzer,
     DocumentationAnalyzer,
     SustainabilityAnalyzer
 )
@@ -56,7 +56,7 @@ class RepositoryAnalyzer:
         self.code_quality_analyzer = CodeQualityAnalyzer(self.config)
         self.code_smell_analyzer = CodeSmellAnalyzer(self.config)
         self.architecture_analyzer = ArchitectureAnalyzer(self.config)
-        self.test_analyzer = TestAnalyzer(self.config)
+        self.test_analyzer = TestCodeAnalyzer(self.config)
         self.documentation_analyzer = DocumentationAnalyzer(self.config)
         self.sustainability_analyzer = SustainabilityAnalyzer(self.config)
         # Mock visualizer for compatibility with tests

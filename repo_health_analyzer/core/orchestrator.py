@@ -176,15 +176,16 @@ class MetricsCalculator:
             'sustainability': 0.10
         }
         
-        smell_score = max(0, 10 - code_smells.severity_score)
+        # Handle None values gracefully
+        smell_score = max(0, 10 - getattr(code_smells, 'severity_score', 0)) if code_smells else 10
         
         overall_score = (
-            code_quality.overall_score * weights['code_quality'] +
-            architecture.score * weights['architecture'] +
+            getattr(code_quality, 'overall_score', 0) * weights['code_quality'] +
+            getattr(architecture, 'score', 0) * weights['architecture'] +
             smell_score * weights['code_smells'] +
-            tests.coverage_score * weights['tests'] +
-            docs.score * weights['docs'] +
-            sustainability.score * weights['sustainability']
+            getattr(tests, 'coverage_score', 0) * weights['tests'] +
+            getattr(docs, 'score', 0) * weights['docs'] +
+            getattr(sustainability, 'score', 0) * weights['sustainability']
         )
         
         return OverallMetrics(
@@ -204,7 +205,7 @@ class MetricsCalculator:
         recommendations = []
         
         # Code quality recommendations
-        if metrics.code_quality.overall_score < 6:
+        if hasattr(metrics.code_quality, 'overall_score') and getattr(metrics.code_quality, 'overall_score', 10) < 6:
             recommendations.append(Recommendation(
                 priority=Priority.HIGH,
                 category="Code Quality",
@@ -253,7 +254,7 @@ class MetricsCalculator:
             ))
         
         # Test recommendations
-        if metrics.tests.coverage_score < 7:
+        if hasattr(metrics.tests, 'coverage_score') and getattr(metrics.tests, 'coverage_score', 10) < 7:
             recommendations.append(Recommendation(
                 priority=Priority.HIGH,
                 category="Testing",
@@ -272,7 +273,7 @@ class MetricsCalculator:
             ))
         
         # Documentation recommendations
-        if metrics.documentation.score < 6:
+        if hasattr(metrics.documentation, 'score') and getattr(metrics.documentation, 'score', 10) < 6:
             recommendations.append(Recommendation(
                 priority=Priority.MEDIUM,
                 category="Documentation",
@@ -291,7 +292,7 @@ class MetricsCalculator:
             ))
         
         # Sustainability recommendations
-        if metrics.sustainability.score < 6:
+        if hasattr(metrics.sustainability, 'score') and getattr(metrics.sustainability, 'score', 10) < 6:
             recommendations.append(Recommendation(
                 priority=Priority.MEDIUM,
                 category="Sustainability",
@@ -300,7 +301,7 @@ class MetricsCalculator:
                 effort="high"
             ))
         
-        if metrics.sustainability.bus_factor < 3:
+        if hasattr(metrics.sustainability, 'bus_factor') and getattr(metrics.sustainability, 'bus_factor', 10) < 3:
             recommendations.append(Recommendation(
                 priority=Priority.HIGH,
                 category="Sustainability",

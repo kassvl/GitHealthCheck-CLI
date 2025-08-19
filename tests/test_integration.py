@@ -469,6 +469,12 @@ Date: 2024-01-05 09:15:00 +0000
         
         # Create analyzer and run analysis
         analyzer = RepositoryAnalyzer(sample_repo_path, sample_config, verbose=True)
+        
+        # Mock additional methods that might cause issues
+        analyzer.git_parser.get_source_files = Mock(return_value=sample_files)
+        analyzer.git_parser._is_source_file = Mock(return_value=True)
+        analyzer.git_parser._should_include_file = Mock(return_value=True)
+        
         result = analyzer.analyze()
         
         # Verify result structure

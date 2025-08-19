@@ -7,7 +7,7 @@ from typing import List, Dict, Set, Tuple, Any, Optional
 from collections import defaultdict, Counter
 from ...models.simple_report import TestMetrics, AnalysisConfig
 
-class TestAnalyzer:
+class TestCodeAnalyzer:
     def __init__(self, config: AnalysisConfig):
         self.config = config
         self.test_patterns = self._initialize_test_patterns()

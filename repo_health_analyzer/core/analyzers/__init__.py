@@ -7,7 +7,7 @@ from .architecture_analyzer import ArchitectureAnalyzer
 from .code_smell_analyzer import CodeSmellAnalyzer
 from .documentation_analyzer import DocumentationAnalyzer
 from .sustainability_analyzer import SustainabilityAnalyzer
-from .test_analyzer import TestAnalyzer
+from .test_analyzer import TestCodeAnalyzer
 
 __all__ = [
     'CodeQualityAnalyzer',
@@ -15,5 +15,5 @@ __all__ = [
     'CodeSmellAnalyzer',
     'DocumentationAnalyzer',
     'SustainabilityAnalyzer',
-    'TestAnalyzer'
+    'TestCodeAnalyzer'
 ]
