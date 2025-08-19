@@ -4,7 +4,7 @@ Analysis orchestrator for coordinating different analysis modules.
 Separates the orchestration logic from the main analyzer to improve modularity.
 """
 
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Set
 from pathlib import Path
 
 from ..models.simple_report import OverallMetrics, Recommendation, Priority
@@ -20,7 +20,7 @@ class AnalysisOrchestrator:
     
     def __init__(self, verbose: bool = False):
         self.verbose = verbose
-        self.analysis_steps = []
+        self.analysis_steps: List[Dict[str, Any]] = []
         self.api_instance = None
     
     def register_step(self, name: str, analyzer, method_name: str, dependencies: List[str] = None):
@@ -42,8 +42,8 @@ class AnalysisOrchestrator:
         Returns:
             Dict containing results from all analysis steps
         """
-        results = {}
-        completed_steps = set()
+        results: Dict[str, Any] = {}
+        completed_steps: Set[str] = set()
         
         # Simple dependency resolution - execute steps when dependencies are met
         total_steps = len(self.analysis_steps)

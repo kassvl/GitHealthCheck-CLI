@@ -189,9 +189,9 @@ class CodeSmellAnalyzer:
         
         # Initialize analysis data
         all_smells = []
-        smells_by_type = Counter()
+        smells_by_type: Counter[str] = Counter()
         smells_by_file = defaultdict(list)
-        severity_distribution = Counter()
+        severity_distribution: Counter[str] = Counter()
         file_smell_scores = {}
         
         # Process each file
@@ -543,7 +543,7 @@ class CodeSmellAnalyzer:
                                severity_distribution: Counter,
                                hotspot_files: List[Tuple[str, float]]) -> Dict[str, Any]:
         """Generate insights and recommendations."""
-        insights = {
+        insights: Dict[str, Any] = {
             'top_smells': smells_by_type.most_common(5),
             'severity_breakdown': dict(severity_distribution),
             'recommendations': [],

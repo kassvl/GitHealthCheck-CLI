@@ -135,7 +135,7 @@ class SustainabilityAnalyzer:
         activity_trend = self._calculate_activity_trend(commits_with_dates)
         
         # Calculate activity distribution
-        activity_by_month = defaultdict(int)
+        activity_by_month: Dict[str, int] = defaultdict(int)
         for date, commit in commits_with_dates:
             month_key = f"{date.year}-{date.month:02d}"
             activity_by_month[month_key] += 1
@@ -158,8 +158,8 @@ class SustainabilityAnalyzer:
             return self._empty_contributor_analysis()
         
         # Extract contributors
-        contributors = defaultdict(int)
-        contributor_last_commit = {}
+        contributors: Dict[str, int] = defaultdict(int)
+        contributor_last_commit: Dict[str, Any] = {}
         
         for commit in commit_history:
             author = commit.get('author', 'Unknown')
@@ -215,9 +215,9 @@ class SustainabilityAnalyzer:
     def _analyze_maintenance_patterns(self, commit_history: List[Dict[str, Any]], 
                                     source_files: List[Path]) -> Dict[str, Any]:
         """Analyze maintenance and health patterns in commits."""
-        maintenance_indicators = Counter()
-        health_indicators = Counter()
-        risk_indicators = Counter()
+        maintenance_indicators: Counter[str] = Counter()
+        health_indicators: Counter[str] = Counter()
+        risk_indicators: Counter[str] = Counter()
         
         # Analyze commit messages
         for commit in commit_history:

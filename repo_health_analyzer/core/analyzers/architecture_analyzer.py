@@ -84,11 +84,11 @@ class ArchitectureAnalyzer:
         module_dependencies = defaultdict(set)
         class_hierarchy = defaultdict(set)
         package_structure = defaultdict(list)
-        design_patterns_found = Counter()
+        design_patterns_found: Counter[str] = Counter()
         architecture_violations = []
         
         # Language distribution
-        language_stats = Counter()
+        language_stats: Counter[str] = Counter()
         
         # Process each file for architecture analysis
         for i, file_path in enumerate(source_files):
@@ -139,12 +139,12 @@ class ArchitectureAnalyzer:
         
         return ArchitectureMetrics(
             score=round(metrics['overall_score'], 1),
-            dependency_count=metrics['dependency_count'],
-            circular_dependencies=metrics['circular_dependencies'],
+            dependency_count=int(metrics['dependency_count']),
+            circular_dependencies=int(metrics['circular_dependencies']),
             coupling_score=round(metrics['coupling_score'], 1),
             cohesion_score=round(metrics['cohesion_score'], 1),
-            srp_violations=metrics['srp_violations'],
-            module_count=metrics['module_count'],
+            srp_violations=int(metrics['srp_violations']),
+            module_count=int(metrics['module_count']),
             depth_of_inheritance=round(metrics['depth_of_inheritance'], 1)
         )
     
@@ -154,7 +154,7 @@ class ArchitectureAnalyzer:
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 content = f.read()
         except Exception:
-            return None
+            return {}
         
         if not content.strip():
             return None
@@ -182,8 +182,9 @@ class ArchitectureAnalyzer:
         # Detect design patterns
         analysis['patterns'] = self._detect_design_patterns(content, file_path)
         
-        # Detect architecture violations
-        analysis['violations'] = self._detect_architecture_violations(content, file_path)
+        # Detect architecture violations  
+        violations_result = self._detect_architecture_violations(content, file_path)
+        analysis['violations'] = [v['type'] for v in violations_result] if violations_result else []
         
         # Analyze complexity indicators
         analysis['complexity_indicators'] = self._analyze_complexity_indicators(content, patterns)
@@ -374,7 +375,7 @@ class ArchitectureAnalyzer:
         
         # Coupling metrics (fan-out and fan-in)
         fan_out = {module: len(deps) for module, deps in dependency_graph.items()}
-        fan_in = defaultdict(int)
+        fan_in: Dict[str, int] = defaultdict(int)
         for module, deps in dependency_graph.items():
             for dep in deps:
                 fan_in[dep] += 1
@@ -505,7 +506,7 @@ class ArchitectureAnalyzer:
                                        design_patterns: Dict[str, int],
                                        violations: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Generate architecture insights and recommendations."""
-        insights = {
+        insights: Dict[str, Any] = {
             'recommendations': [],
             'design_patterns_used': {},
             'top_violations': [],
@@ -518,7 +519,7 @@ class ArchitectureAnalyzer:
                 insights['design_patterns_used'][pattern] = count
         
         # Top violations
-        violation_counts = {}
+        violation_counts: Dict[str, int] = {}
         for violation in violations:
             violation_type = violation.get('type', 'unknown')
             violation_counts[violation_type] = violation_counts.get(violation_type, 0) + 1

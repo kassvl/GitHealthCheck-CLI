@@ -192,7 +192,7 @@ class TestAnalyzer:
     
     def _analyze_test_files(self, test_files: List[Path]) -> Dict[str, Any]:
         """Analyze test files for quality and coverage."""
-        analysis = {
+        analysis: Dict[str, Any] = {
             'total_test_functions': 0,
             'total_assertions': 0,
             'test_classes': 0,
@@ -245,7 +245,7 @@ class TestAnalyzer:
         function_patterns = self.test_patterns['function_patterns'].get(language, [])
         assertion_patterns = self.test_patterns['assertion_patterns'].get(language, [])
         
-        analysis = {
+        analysis: Dict[str, Any] = {
             'file_path': str(test_file),
             'language': language,
             'total_lines': len([line for line in content.split('\n') if line.strip()]),
@@ -285,7 +285,7 @@ class TestAnalyzer:
     
     def _analyze_test_coverage(self, test_files: List[Path], source_files: List[Path]) -> Dict[str, Any]:
         """Analyze test coverage patterns."""
-        coverage_analysis = {
+        coverage_analysis: Dict[str, Any] = {
             'has_coverage_config': False,
             'coverage_indicators': [],
             'potentially_uncovered_files': [],
@@ -336,13 +336,13 @@ class TestAnalyzer:
     
     def _detect_test_frameworks(self, test_files: List[Path]) -> Dict[str, Any]:
         """Detect test frameworks used in the project."""
-        framework_analysis = {
+        framework_analysis: Dict[str, Any] = {
             'detected_frameworks': [],
             'framework_files': defaultdict(list),
             'framework_confidence': {}
         }
         
-        framework_indicators = Counter()
+        framework_indicators: Counter[str] = Counter()
         
         for test_file in test_files:
             try:

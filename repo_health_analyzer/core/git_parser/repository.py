@@ -60,9 +60,9 @@ class GitRepositoryParser:
             analyzed_at=datetime.now(timezone.utc),
             total_files=total_files,
             total_lines=total_lines,
-            languages=languages,
+            languages={k: float(v) for k, v in languages.items()},
             commit_count=commit_count,
-            contributors=contributors,
+            contributors=[c for c in contributors if c is not None],
             age_days=age_days
         )
     

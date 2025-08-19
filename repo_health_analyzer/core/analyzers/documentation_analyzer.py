@@ -138,7 +138,7 @@ class DocumentationAnalyzer:
     
     def _analyze_documentation_files(self, repo_path: Path) -> Dict[str, Any]:
         """Analyze documentation files in the repository."""
-        doc_analysis = {
+        doc_analysis: Dict[str, Any] = {
             'files_found': {},
             'total_score': 0.0,
             'max_possible_score': 0.0,
@@ -235,7 +235,7 @@ class DocumentationAnalyzer:
     
     def _analyze_code_documentation(self, source_files: List[Path]) -> Dict[str, Any]:
         """Analyze documentation within source code files."""
-        code_doc_analysis = {
+        code_doc_analysis: Dict[str, Any] = {
             'total_functions': 0,
             'documented_functions': 0,
             'total_classes': 0,
@@ -255,7 +255,7 @@ class DocumentationAnalyzer:
         for file_path in source_files:
             try:
                 file_analysis = self._analyze_file_documentation(file_path)
-                if file_analysis:
+                if file_analysis and isinstance(file_analysis, dict) and file_analysis:
                     # Aggregate counts
                     code_doc_analysis['total_functions'] += file_analysis['function_count']
                     code_doc_analysis['documented_functions'] += file_analysis['documented_functions']
@@ -295,17 +295,17 @@ class DocumentationAnalyzer:
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 content = f.read()
         except Exception:
-            return None
+            return {}
         
         if not content.strip():
-            return None
+            return {}
         
         # Detect language
         language = self._detect_language(file_path.suffix.lower())
         doc_patterns = self.doc_patterns.get(language, self.doc_patterns['generic'])
         lang_patterns = self.language_patterns.get(language, {})
         
-        analysis = {
+        analysis: Dict[str, Any] = {
             'language': language,
             'total_lines': len([line for line in content.split('\n') if line.strip()]),
             'comment_lines': 0,

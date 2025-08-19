@@ -80,13 +80,13 @@ class CodeQualityAnalyzer:
         print(f"🔧 Advanced regex-based code quality analysis on {len(source_files)} files...")
         
         # Initialize metrics collectors
-        all_metrics = {
+        all_metrics: Dict[str, List[float]] = {
             'complexity': [], 'function_lengths': [], 'comment_ratios': [], 
             'naming_scores': [], 'duplication_scores': [], 'smell_counts': [],
             'type_hint_ratios': [], 'error_handling_ratios': [], 'line_violations': []
         }
         
-        complexity_distribution = defaultdict(int)
+        complexity_distribution: Dict[str, int] = defaultdict(int)
         file_analysis_details = []
         total_lines = 0
         total_functions = 0
@@ -148,9 +148,8 @@ class CodeQualityAnalyzer:
             overall_score=round(metrics_summary['overall_score'], 1),
             cyclomatic_complexity={
                 'average': round(metrics_summary['avg_complexity'], 2),
-                'max': metrics_summary['max_complexity'],
-                'functions_analyzed': total_functions,
-                'distribution': dict(complexity_distribution)
+                'max': float(metrics_summary['max_complexity']),
+                'functions_analyzed': float(total_functions)
             },
             function_length_avg=round(metrics_summary['avg_function_length'], 1),
             comment_density=round(metrics_summary['avg_comment_density'], 3),
@@ -171,10 +170,10 @@ class CodeQualityAnalyzer:
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 content = f.read()
         except Exception:
-            return None
+            return {}
         
         if not content.strip():
-            return None
+            return {}
             
         lines = content.split('\n')
         file_extension = file_path.suffix.lower()
@@ -338,7 +337,7 @@ class CodeQualityAnalyzer:
             function_patterns = [function_patterns]
         
         # Find all functions
-        functions = []
+        functions: List[Any] = []
         for pattern in function_patterns:
             functions.extend(re.finditer(pattern, content, re.MULTILINE))
         
@@ -386,7 +385,7 @@ class CodeQualityAnalyzer:
         if isinstance(function_patterns, str):
             function_patterns = [function_patterns]
         
-        functions = []
+        functions: List[Any] = []
         for pattern in function_patterns:
             functions.extend(re.finditer(pattern, content, re.MULTILINE))
         
@@ -506,7 +505,7 @@ class CodeQualityAnalyzer:
         
         # Look for repeated sequences of 3+ lines
         duplicated_lines = 0
-        line_groups = {}
+        line_groups: Dict[tuple, int] = {}
         
         for i in range(len(lines) - 2):
             sequence = tuple(lines[i:i+3])
@@ -692,7 +691,7 @@ class CodeQualityAnalyzer:
     
     def _generate_quality_insights(self, file_details: List[Dict], metrics_summary: Dict) -> Dict[str, Any]:
         """Generate insights and recommendations."""
-        insights = {
+        insights: Dict[str, Any] = {
             'top_issues': [],
             'recommendations': [],
             'best_practices': [],
