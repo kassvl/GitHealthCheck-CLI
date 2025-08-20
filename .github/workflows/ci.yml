@@ -68,7 +68,7 @@ jobs:
     - name: Test CLI installation
       run: |
         rha --help
-        rha version
+        rha --version
     
     - name: Run demo analysis
       run: |
@@ -83,8 +83,7 @@ jobs:
         git commit -m "Initial commit"
         
         # Run analysis
-        rha validate
-        rha analyze --format summary
+        rha . --verbose
     
     - name: Verify output files
       run: |

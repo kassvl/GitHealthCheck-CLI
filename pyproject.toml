@@ -22,7 +22,7 @@ classifiers = [
 dependencies = [
   # CLI and UX
   "rich>=10.0.0",
-  "click>=8.0.0",
+  "typer>=0.9.0",
   # Core analysis
   "GitPython>=3.1.0",
   # Optional data processing
@@ -47,7 +47,7 @@ dev = [
 ]
 
 [project.scripts]
-rha = "repo_health_analyzer.cli.simple_main:main"
+rha = "repo_health_analyzer.cli.main:app"
 
 [tool.setuptools.packages.find]
 where = ["."]
