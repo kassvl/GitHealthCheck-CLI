@@ -10,6 +10,9 @@ from pathlib import Path
 from ..core.analyzer import RepositoryAnalyzer
 from ..models.simple_report import AnalysisConfig
 
+# Version information
+__version__ = "1.0.0"
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -36,6 +39,7 @@ Examples:
     parser.add_argument("--exclude", nargs="+", 
                        default=['*/venv/*', '*/node_modules/*', '*/build/*', '*/.git/*'], 
                        help="File patterns to exclude")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     
     args = parser.parse_args()
     

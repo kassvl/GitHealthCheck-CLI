@@ -19,6 +19,15 @@ from rich.panel import Panel
 from ..core.analyzer import RepositoryAnalyzer
 from ..models.simple_report import HealthReport
 
+# Version information
+__version__ = "1.0.0"
+
+def version_callback(value: bool):
+    """Print version and exit."""
+    if value:
+        typer.echo(f"Repo Health Analyzer (rha) version {__version__}")
+        raise typer.Exit()
+
 app = typer.Typer(
     name="rha",
     help="Repo Health Analyzer - Offline git repository health analysis tool",
@@ -41,6 +50,10 @@ def analyze(
     ),
     format_type: str = typer.Option(
         "json", "--format", help="Output format: json, yaml, or summary"
+    ),
+    version: Optional[bool] = typer.Option(
+        None, "--version", callback=version_callback, is_eager=True,
+        help="Show version and exit"
     ),
 ) -> None:
     """
