@@ -1,5 +1,6 @@
 """Tests for Main Repository Analyzer."""
 
+import os
 import pytest
 from pathlib import Path
 from unittest.mock import Mock, patch, mock_open
@@ -46,7 +47,12 @@ class TestRepositoryAnalyzer:
     
     def test_analyzer_initialization_string_path(self, mock_git_parser):
         """Test analyzer initialization with string path."""
-        string_path = '/fake/test/repo'
+        # Use platform-appropriate absolute path
+        if os.name == 'nt':  # Windows
+            string_path = 'C:\\fake\\test\\repo'
+        else:  # Unix-like systems
+            string_path = '/fake/test/repo'
+        
         analyzer = RepositoryAnalyzer(string_path)
         
         assert analyzer.repo_path == Path(string_path)
@@ -221,14 +227,19 @@ class TestRepositoryAnalyzer:
     
     def test_path_conversion(self, mock_git_parser, sample_config):
         """Test path conversion and normalization."""
+        # Use platform-appropriate absolute path
+        if os.name == 'nt':  # Windows
+            string_path = 'C:\\fake\\repo'
+        else:  # Unix-like systems
+            string_path = '/fake/repo'
+        
         # Test with string path
-        string_path = '/fake/repo'
         analyzer1 = RepositoryAnalyzer(string_path, sample_config)
         assert analyzer1.repo_path == Path(string_path)
         assert analyzer1.repo_path.is_absolute()
         
         # Test with Path object
-        path_obj = Path('/fake/repo')
+        path_obj = Path(string_path)
         analyzer2 = RepositoryAnalyzer(path_obj, sample_config)
         assert analyzer2.repo_path == path_obj
         
